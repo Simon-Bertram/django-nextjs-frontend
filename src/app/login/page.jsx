@@ -1,29 +1,12 @@
 "use client";
 // -> url -> /login
 
-// const LOGIN_URL = "http://localhost:8001/api/token/pair";
 const LOGIN_URL = "/api/login/";
 
 export default function Page() {
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(event, event.target);
-    const formData = new FormData(event.target);
-    const objectFromForm = Object.fromEntries(formData);
-    const jsonData = JSON.stringify(objectFromForm);
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonData,
-    };
-    const response = await fetch(LOGIN_URL, requestOptions);
-    const data = await response.json();
-    console.log(data);
-    if (response.ok) {
-      console.log("Logged in");
-    }
   }
 
   return (
