@@ -7,6 +7,18 @@ export default function Page() {
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(event, event.target);
+
+    const formData = new FormData(event.target);
+    const objectFromForm = Object.fromEntries(formData);
+    const jsonData = JSON.stringify(objectFromForm);
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonData,
+    };
+    const response = await fetch(LOGIN_URL, requestOptions);
   }
 
   return (
