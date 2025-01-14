@@ -5,6 +5,16 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   const data = await request.json();
   console.log(data);
-  cookies().set({});
+
+  const authToken = cookies().get("auth-token");
+
+  cookies().set({
+    name: "auth-token",
+    value: "abc",
+    httpOnly: true, // limit client-side js
+    sameSite: "strict",
+    secure: process.env.NODE_ENV !== "development",
+    maxAge: 3600,
+  });
   return NextResponse.json("Hello world", { status: 200 });
 }
