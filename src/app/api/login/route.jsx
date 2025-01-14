@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 const DJANGO_API_LOGIN_URL = "http://localhost:8001/api/token/pair";
 
 export async function POST(request) {
-  const myAuthToken = await cookies().get("auth-token");
+  const myAuthToken = await (await cookies()).get("auth-token");
   console.log(myAuthToken);
 
   const requestData = await request.json();
@@ -23,7 +23,7 @@ export async function POST(request) {
   if (response.ok) {
     console.log("Logged in");
     const authToken = responseData.access;
-    cookies().set({
+    (await cookies()).set({
       name: "auth-token",
       value: authToken,
       httpOnly: true, // limit client-side js
