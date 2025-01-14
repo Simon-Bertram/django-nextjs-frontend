@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 const DJANGO_API_LOGIN_URL = "http://localhost:8001/api/token/pair";
 
 export async function POST(request) {
-  const myAuthToken = await (await cookies()).get("auth-token");
-  console.log(myAuthToken);
+  // const myAuthToken = await (await cookies()).get("auth-token");
+  // console.log(myAuthToken.value);
 
   const requestData = await request.json();
   const jsonData = JSON.stringify(requestData);
