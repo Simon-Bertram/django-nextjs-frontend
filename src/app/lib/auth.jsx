@@ -40,8 +40,8 @@ export async function setRefreshToken(authRefreshToken) {
   });
 }
 
-export async function deleteToken() {
+export async function deleteTokens() {
   // logout
-  (await cookies()).delete("auth-refresh-token");
-  return (await cookies()).delete("auth-token");
+  (await cookies()).delete(TOKEN_REFRESH_NAME);
+  return (await cookies()).delete(TOKEN_NAME);
 }
